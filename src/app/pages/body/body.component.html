@@ -1,0 +1,81 @@
+<div appHighlight color="blue">
+  <h1 class="mb-3 font-extrabold text-xl">
+    Welcome {{ varFromService | async }}
+  </h1>
+</div>
+
+<div class="flex">
+  @for (item of dataSource; track $index) {
+    <div>
+      <app-card
+        class="mr-2"
+        [helperText]="item.helperText"
+        [calNumber]="calNumberHardCoded"
+        [unit]="item.unit"
+        [backgroundColor]="item.backgroundColor"
+        [symbol]="item.symbol"
+        (buttonClick)="childCompButtonClicked($event)"
+      >
+      </app-card>
+    </div>
+  }
+
+  <button
+    type="button"
+    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+    (click)="listenToThisClick()"
+  >
+    Click me
+  </button>
+
+  <!-- @switch (swutchCheckTest) {
+    @case (itemStatus.CREATED) {
+      show this
+    }
+
+    @case (itemStatus.FAILED) {
+      do not show this
+    }
+
+    @default {
+      show default
+    }
+  } -->
+</div>
+
+<hr />
+
+<div class="bg-gray-200 border flex flex-col items-center justify-center p-3">
+  <div class="flex flex-col">
+    <input type="text" [formControl]="searchControl" />
+    <button
+      type="button"
+      class="mt-3 text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+      (click)="onClickSearchSong()"
+    >
+      Search song
+    </button>
+  </div>
+
+  search text - {{ searchControl.value }}
+
+  <hr />
+  <table class="mt-3 border">
+    <thead>
+      <tr>
+        <th>Artist Id</th>
+        <th>Name</th>
+        <th>Release date</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (artist of listOfArtists(); track $index) {
+        <tr>
+          <td>{{ artist.artistId }}</td>
+          <td>{{ artist.artistName }}</td>
+          <td>{{ artist.releaseDate }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
