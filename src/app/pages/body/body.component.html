@@ -60,22 +60,33 @@
   search text - {{ searchControl.value }}
 
   <hr />
-  <table class="mt-3 border">
-    <thead>
-      <tr>
-        <th>Artist Id</th>
-        <th>Name</th>
-        <th>Release date</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (artist of listOfArtists(); track $index) {
+
+  <div class="relative overflow-x-auto mt-3 border">
+    <table
+      class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    >
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
         <tr>
-          <td>{{ artist.artistId }}</td>
-          <td>{{ artist.artistName }}</td>
-          <td>{{ artist.releaseDate }}</td>
+          <th scope="col" class="px-6 py-3">Artist Id</th>
+          <th scope="col" class="px-6 py-3">Name</th>
+          <th scope="col" class="px-6 py-3">Release date</th>
         </tr>
-      }
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        @for (artist of listOfArtists(); track $index) {
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="px-6 py-4">
+              {{ artist.artistId }}
+            </td>
+            <td class="px-6 py-4">
+              {{ artist.artistName }}
+            </td>
+            <td class="px-6 py-4">{{ artist.releaseDate }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </div>
