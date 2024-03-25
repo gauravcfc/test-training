@@ -7,4 +7,5 @@ export interface Artist {
   artistId: number;
   artistName: string;
   releaseDate: string;
+  country: string;
 }

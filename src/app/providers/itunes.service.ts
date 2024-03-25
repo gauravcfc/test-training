@@ -9,7 +9,7 @@ import { ItunesSearchResponse } from '../models/itunes-search-response.model';
 export class ItunesService {
   var1: string = 'Service class';
 
-  BASE_URL: string = 'https://itunes.apple.com/search?term=';
+  BASE_URL: string = 'https://itunes.apple.com/search';
 
   cal: BehaviorSubject<number> = new BehaviorSubject(0);
 
@@ -28,7 +28,13 @@ export class ItunesService {
 
   getSongsBySearchString(searchTerm: string): Observable<ItunesSearchResponse> {
     return this.httpClient.get<ItunesSearchResponse>(
-      `${this.BASE_URL}${searchTerm}&entity=song`,
+      `${this.BASE_URL}?term=${searchTerm}&entity=song`,
+    );
+  }
+
+  getSongsByArtist(artistName: string): Observable<ItunesSearchResponse> {
+    return this.httpClient.get<ItunesSearchResponse>(
+      `${this.BASE_URL}?term=${artistName}&entity=musicArtist`,
     );
   }
 }

@@ -26,7 +26,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (artist of listOfArtists(); track $index) {
+      @for (artist of listOfArtists$ | async; track $index) {
         <tr
           class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
           (click)="onClickArtist(artist)"
